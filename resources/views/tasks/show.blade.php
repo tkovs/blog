@@ -5,6 +5,9 @@
 		<title></title>
 	</head>
 	<body>
-		<h1>{{ $task->body }}</h1>
+		<h1>{{ $task->body }} - {{ $task->completed }}</h1>
+		<p>
+			<a href="{{ route('finish_task', $task->id) }}">Concluir</a>
+		</p>
 	</body>
 </html>
