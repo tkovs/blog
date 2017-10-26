@@ -12,8 +12,11 @@ class TasksController extends Controller
 	    return view('tasks.index', compact('tasks'));
 	} 
 
-	public function finish($id) {
-		$task = Task::find($id);
+	public function show(Task $task) {
+		return view('tasks.show', compact('task'));
+	}
+
+	public function finish(Task $task) {
 		$task->finish();
 
 		return redirect()->route('list_tasks');
@@ -23,12 +26,6 @@ class TasksController extends Controller
 		Task::create($body);
 
 		return redirect()->route('list_tasks');
-	}
-
-	public function show($id) {
-		$task = Task::find($id);
-
-		return view('tasks.show', compact('task'));
 	}
 
 	public function all() {
