@@ -13,29 +13,8 @@
 
 use \App\Task;
 
-Route::get('/tasks', function () {
-	$tasks = Task::incomplete();
-
-    return view('tasks.index', compact('tasks'));
-})->name('list_tasks');
-
-Route::get('/tasks/{task}', function ($id) {
-	$task = Task::find($id);
-
-	return view('tasks.show', compact('task'));
-})->name('show_task');
-
-Route::get('/tasks/create/{body}', function ($body) {
-	$data = ['body' => $body];
-	Task::insert($data);
-
-	return redirect()->route('list_tasks');
-})->name('create_task');
-
-Route::get('/tasks/finish/{id}', function ($id) {
-	$task = Task::find($id);
-	$task->completed = true;
-	$task->save();
-
-	return redirect()->route('list_tasks');
-})->name('finish_task');
+Route::get('/tasks', 'TasksController@index')->name('list_tasks');
+Route::get('/tasks/all', 'TasksController@all')->name('list_all_tasks');
+Route::get('/tasks/{task}', 'TasksController@show')->name('show_task');
+Route::get('/tasks/finish/{id}', 'TasksController@finish')->name('finish_task');
+Route::get('/tasks/create/{body}', 'TasksController@create')->name('create_task');

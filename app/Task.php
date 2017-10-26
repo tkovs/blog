@@ -10,7 +10,13 @@ class Task extends Model
     	return static::where('completed', 0)->get();
     }
 
-    public static function complete() {
+    public static function create($body) {
+        $data = ['body' => $body];
+
+        return static::insert($data);
+    }
+
+    public static function done() {
     	return static::where('completed', 1)->get();
     }
 
@@ -20,6 +26,7 @@ class Task extends Model
 
     public function finish() {
     	$this->completed = true;
+        
     	return $this->save();
     }
 }
