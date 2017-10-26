@@ -1,0 +1,9 @@
+Criando uma tabela chamada posts
+
+php artisan make:controller PostsController
+php artisan make:model Post
+php artisan make:migration create_posts_table --create=posts
+
+ou
+
+php artisan make:model Post -mc
