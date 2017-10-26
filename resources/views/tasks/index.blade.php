@@ -1,16 +1,13 @@
-<!DOCTYPE html>
+@extends('layouts.master')
 
-<html>
-	<head>
-		<title>Tasks</title>
-	</head>
-	<body>
-		<ul>
-		@foreach ($tasks as $task)
-		<li>
-			<a href="{{ route('show_task', $task->id) }}">{{ $task->body }}</a>
-		</li>
-		@endforeach
-		</ul>
-	</body>
-</html>
+@section('title')
+Tasks
+@endsection
+
+@section('content')
+<ul>
+	@foreach ($tasks as $task)
+	<li><a href="{{ route('show_task', $task->id) }}">{{ $task->body }}</a></li>
+	@endforeach
+</ul>
+@endsection
