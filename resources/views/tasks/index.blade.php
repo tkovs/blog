@@ -8,7 +8,12 @@ Tasks
 <ul>
 	@isset ($tasks)
 	@foreach ($tasks as $t)
-	<li><a href="{{ route('show_task', $t->id) }}">{{ $t->title }}</a></li>
+	<li>
+		<a href="{{ route('show_task', $t->id) }}">
+			{{ $t->title }}
+		</a>
+
+		{{ $t->created_at->toFormattedDateString() }}</li>
 	@endforeach
 	@endisset
 </ul>
