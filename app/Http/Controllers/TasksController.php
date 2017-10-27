@@ -17,6 +17,10 @@ class TasksController extends Controller
 	}
 
 	public function post_create() {
+		$this->validate(request(), [
+			'title' => 'required',
+			'body'  => 'required'
+		]);
 		Task::create(request(['title', 'body']));
 
 		return redirect()->route('list_tasks');

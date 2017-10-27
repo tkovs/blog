@@ -25,4 +25,6 @@ Nova tarefa
 		<button type="submit" name="submit" />Publicar</button>
 	</fieldset>	
 </form>
+
+@include('layouts.errors')
 @endsection
