@@ -6,8 +6,16 @@ Tasks
 
 @section('content')
 <ul>
-	@foreach ($tasks as $task)
-	<li><a href="{{ route('show_task', $task->id) }}">{{ $task->title }}</a></li>
+	@isset ($tasks)
+	@foreach ($tasks as $t)
+	<li><a href="{{ route('show_task', $t->id) }}">{{ $t->title }}</a></li>
 	@endforeach
+	@endisset
 </ul>
+
+<div>
+	<h2>Tarefa não concluída mais antiga</h2>
+
+	@include('tasks.task')
+</div>
 @endsection

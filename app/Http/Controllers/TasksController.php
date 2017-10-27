@@ -8,8 +8,9 @@ class TasksController extends Controller
 {
 	public function index() {
 		$tasks = Task::incomplete();
+		$task = $tasks->first();
 
-	    return view('tasks.index', compact('tasks'));
+	    return view('tasks.index', compact('tasks', 'task'));
 	} 
 
 	public function get_create() {
