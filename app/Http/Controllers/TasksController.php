@@ -12,8 +12,14 @@ class TasksController extends Controller
 	    return view('tasks.index', compact('tasks'));
 	} 
 
-	public function create() {
+	public function get_create() {
 		return view('tasks.create');
+	}
+
+	public function post_create() {
+		Task::create(request(['title', 'body']));
+
+		return redirect()->route('list_tasks');
 	}
 
 	public function show(Task $task) {

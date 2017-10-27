@@ -5,10 +5,13 @@ Task {{ $task->id }}
 @endsection
 
 @section('content')
-<h1>{{ $task->body }} - {{ $task->completed }}</h1>
-@if ($task->completed == false)
+<h1>{{ $task->title }} - {{ $task->completed }}</h1>
+<p>{{ $task->body }}</p>
 <p>
+@if ($task->completed == false)
 	<a href="{{ route('finish_task', $task->id) }}">Concluir</a>
-</p>
+@else
+	Concluído!
 @endif
+</p>
 @endsection

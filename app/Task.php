@@ -6,14 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+    // protected $fillable = ['title', 'body'];
+    protected $guarded = [];
+
     public static function incomplete() {
     	return static::where('completed', 0)->get();
-    }
-
-    public static function create($body) {
-        $data = ['body' => $body];
-
-        return static::insert($data);
     }
 
     public static function done() {
@@ -25,8 +22,8 @@ class Task extends Model
     }
 
     public function finish() {
-    	$this->completed = true;
-        
+        $this->completed = 1;
+
     	return $this->save();
     }
 }
