@@ -22,6 +22,16 @@ Nova tarefa
 			<input type="text" name="body" />
 		</div>
 
+		<div>
+			<label for="person_id">Responsável</label>
+			<input list="people" name="person_id" contenteditable="false" />
+			<datalist id="people">
+				@foreach ($people as $person)
+				<option value="{{ $person->id }}">{{ $person->name }}</option>
+				@endforeach
+			</datalist>
+		</div>
+
 		<button type="submit" name="submit" />Publicar</button>
 	</fieldset>	
 </form>
