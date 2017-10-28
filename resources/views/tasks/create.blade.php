@@ -7,34 +7,30 @@ Nova tarefa
 @section('content')
 <h1>Crie uma nova tarefa</h1>
 <hr><br />
-<form id="newtask" action="{{ route('create_task') }}" method="POST">
-	{{ csrf_field() }}
+
+{{-- {{ Form::open(['url' => route('create_task'), 'method' => 'POST']) }} --}}
+{{ Form::open(['action' => 'TasksController@post_create', 'method' => 'POST']) }}
 	<fieldset>
 		<legend>Detalhes da tarefa</legend>
 
 		<div>
-			<label for="task-title">Título da tarefa</label>
-			<input type="text" name="title" />
+			{{ Form::label('title', 'Título da tarefa') }}
+			{{ Form::text('title') }}
 		</div>
 
 		<div>
-			<label for="task-body">Descrição da tarefa</label>
-			<input type="text" name="body" />
+			{{ Form::label('body', 'Descrição da tarefa') }}
+			{{ Form::text('body') }}
 		</div>
 
 		<div>
-			<label for="person_id">Responsável</label>
-			<input list="people" name="person_id" contenteditable="false" />
-			<datalist id="people">
-				@foreach ($people as $person)
-				<option value="{{ $person->id }}">{{ $person->name }}</option>
-				@endforeach
-			</datalist>
+			{{ Form::label('person_id', 'Responsável') }}
+			{{ Form::select('person_id', App\Person::pluck('name', 'id')) }}
 		</div>
 
-		<button type="submit" name="submit" />Publicar</button>
-	</fieldset>	
-</form>
+		{{ Form::submit('Concluir') }}
+	</fieldset>
+{{ Form::close() }}
 
 @include('layouts.errors')
 @endsection
